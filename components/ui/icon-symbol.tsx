@@ -1,30 +1,109 @@
-// Fallback for using MaterialIcons on Android and web.
-
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { SymbolWeight, SymbolViewProps } from "expo-symbols";
 import { ComponentProps } from "react";
 import { OpaqueColorValue, type StyleProp, type TextStyle } from "react-native";
 
-type IconMapping = Record<SymbolViewProps["name"], ComponentProps<typeof MaterialIcons>["name"]>;
+type IconMapping = Partial<Record<SymbolViewProps["name"], ComponentProps<typeof MaterialIcons>["name"]>>;
 type IconSymbolName = keyof typeof MAPPING;
 
-/**
- * Add your SF Symbols to Material Icons mappings here.
- * - see Material Icons in the [Icons Directory](https://icons.expo.fyi).
- * - see SF Symbols in the [SF Symbols](https://developer.apple.com/sf-symbols/) app.
- */
 const MAPPING = {
   "house.fill": "home",
-  "paperplane.fill": "send",
-  "chevron.left.forwardslash.chevron.right": "code",
+  "house": "home",
+  "film.fill": "videocam",
+  "film": "videocam",
+  "person.2.fill": "people",
+  "person.2": "people-outline",
+  "calendar": "event",
+  "bubble.left.fill": "chat-bubble",
+  "bubble.left": "chat-bubble-outline",
+  "person.fill": "person",
+  "person": "person-outline",
+  "magnifyingglass": "search",
+  "bell.fill": "notifications",
+  "bell": "notifications-none",
+  "plus": "add",
   "chevron.right": "chevron-right",
-} as IconMapping;
+  "chevron.left": "chevron-left",
+  "chevron.down": "expand-more",
+  "xmark": "close",
+  "heart.fill": "favorite",
+  "heart": "favorite-border",
+  "square.and.arrow.up": "share",
+  "bookmark.fill": "bookmark",
+  "bookmark": "bookmark-border",
+  "paperplane.fill": "send",
+  "ellipsis.circle": "more-horiz",
+  "flag.fill": "flag",
+  "gearshape.fill": "settings",
+  "gearshape": "settings",
+  "pencil": "edit",
+  "trash.fill": "delete",
+  "camera.fill": "camera-alt",
+  "photo.fill": "image",
+  "doc.text.fill": "description",
+  "link": "link",
+  "arrow.left": "arrow-back",
+  "checkmark": "check",
+  "checkmark.circle.fill": "check-circle",
+  "exclamationmark.triangle.fill": "warning",
+  "lock.fill": "lock",
+  "envelope.fill": "email",
+  "at": "alternate-email",
+  "globe": "public",
+  "shield.fill": "security",
+  "eye.fill": "visibility",
+  "eye.slash.fill": "visibility-off",
+  "star.fill": "star",
+  "star": "star-border",
+  "play.fill": "play-arrow",
+  "pause.fill": "pause",
+  "mic.fill": "mic",
+  "mic": "mic-none",
+  "hand.thumbsup.fill": "thumb-up",
+  "hand.thumbsup": "thumb-up-off-alt",
+  "arrow.up": "arrow-upward",
+  "arrow.down": "arrow-downward",
+  "plus.circle.fill": "add-circle",
+  "minus.circle.fill": "remove-circle",
+  "square.fill": "check-box",
+  "square": "check-box-outline-blank",
+  "circle.fill": "radio-button-checked",
+  "circle": "radio-button-unchecked",
+  "text.bubble.fill": "forum",
+  "building.2.fill": "business",
+  "cpu.fill": "memory",
+  "wand.and.stars": "auto-awesome",
+  "rosette": "military-tech",
+  "trophy.fill": "emoji-events",
+  "briefcase.fill": "work",
+  "graduationcap.fill": "school",
+  "chevron.left.forwardslash.chevron.right": "code",
+  "chart.bar.fill": "bar-chart",
+  "network": "device-hub",
+  "message.fill": "chat",
+  "message": "chat-bubble-outline",
+  "arrow.right": "arrow-forward",
+  "xmark.circle.fill": "cancel",
+  "info.circle.fill": "info",
+  "questionmark.circle.fill": "help-outline",
+  "exclamationmark.circle.fill": "error-outline",
+  "sparkles": "auto-fix-high",
+  "lightbulb.fill": "lightbulb",
+  "book.fill": "menu-book",
+  "doc.fill": "article",
+  "newspaper.fill": "newspaper",
+  "megaphone.fill": "campaign",
+  "person.badge.plus": "person-add",
+  "person.crop.circle": "account-circle",
+  "person.crop.circle.fill": "account-circle",
+  "square.grid.2x2.fill": "grid-view",
+  "list.bullet": "list",
+  "arrow.clockwise": "refresh",
+  "arrow.uturn.backward": "undo",
+  "arrow.uturn.forward": "redo",
+  "hand.point.up.fill": "thumb-up",
+} satisfies IconMapping;
 
-/**
- * An icon component that uses native SF Symbols on iOS, and Material Icons on Android and web.
- * This ensures a consistent look across platforms, and optimal resource usage.
- * Icon `name`s are based on SF Symbols and require manual mapping to Material Icons.
- */
 export function IconSymbol({
   name,
   size = 24,
@@ -37,5 +116,5 @@ export function IconSymbol({
   style?: StyleProp<TextStyle>;
   weight?: SymbolWeight;
 }) {
-  return <MaterialIcons color={color} size={size} name={MAPPING[name]} style={style} />;
+  return <MaterialIcons color={color} size={size} name={MAPPING[name] as any} style={style} />;
 }
